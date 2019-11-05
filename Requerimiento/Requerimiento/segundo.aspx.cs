@@ -45,5 +45,10 @@ namespace Requerimiento
             gvProducto.DataSource =data;
             gvProducto.DataBind();
         }
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
     }
 }

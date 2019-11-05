@@ -54,3 +54,5 @@ C:\Users\100_Jornada1\Desktop\Fernelly asp\Requerimiento\Requerimiento\obj\Debug
 C:\Users\100_Jornada1\Desktop\Fernelly asp\Requerimiento\Requerimiento\obj\Debug\Requerimiento.csproj.CopyComplete
 C:\Users\100_Jornada1\Desktop\Fernelly asp\Requerimiento\Requerimiento\obj\Debug\Requerimiento.dll
 C:\Users\100_Jornada1\Desktop\Fernelly asp\Requerimiento\Requerimiento\obj\Debug\Requerimiento.pdb
+C:\Users\100_Jornada1\Desktop\Fernelly asp\Requerimiento\Requerimiento\bin\Newtonsoft.Json.dll
+C:\Users\100_Jornada1\Desktop\Fernelly asp\Requerimiento\Requerimiento\bin\Newtonsoft.Json.xml

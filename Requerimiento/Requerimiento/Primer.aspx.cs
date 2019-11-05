@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.IO;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 namespace Requerimiento
 {
     public partial class Primer : System.Web.UI.Page
@@ -20,6 +21,8 @@ namespace Requerimiento
         {
             combo();
             tabla();
+          
+          
         }
         public void combo()
         {
@@ -28,6 +31,16 @@ namespace Requerimiento
             ddlCategoria.DataSource = data;
             ddlCategoria.DataTextField = "NomCat";
             ddlCategoria.DataBind();
+            dynamic combo = ddlCategoria.DataSource;
+           
+            Session["Archivo"] = JsonConvert.SerializeObject(combo);
+            comboJson();
+
+        }
+        public void comboJson()
+        {
+            File.WriteAllText(Server.MapPath("Categoria.json"), "[" + Session["Archivo"].ToString() + "]");
+            Response.Write("<script>alert('Se creo archivo JSON de Categoria')</script>");
         }
         public void tabla()
         {
@@ -37,9 +50,21 @@ namespace Requerimiento
             gvProducto.DataSource = data.Tables[0];
            
             gvProducto.DataBind();
+            dynamic tabla = gvProducto.DataSource;
+            
+            Session["Archivo"] = JsonConvert.SerializeObject(tabla);
+            tablaJson();
 
-        
+        }
+        public void tablaJson()
+        {
+            File.WriteAllText(Server.MapPath("Producto.json"), "[" + Session["Archivo"].ToString() + "]");
+            Response.Write("<script>alert('Creado archivo JSON de producto')</script>");
+        }
 
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
         }
     }
 }
