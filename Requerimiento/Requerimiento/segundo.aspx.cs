@@ -13,13 +13,14 @@ namespace Requerimiento
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           ddlCategoria.Visible = false;
         }
 
         protected void btnMostrar_Click(object sender, EventArgs e)
         {
             combo();
             tabla();
+            ddlCategoria.Visible = true;
         }
         public void combo()
         {

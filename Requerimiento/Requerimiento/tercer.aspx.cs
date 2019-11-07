@@ -12,36 +12,32 @@ namespace Requerimiento
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            combo();
-         //   tabla();
+            if (!IsPostBack)
+            {
+                combo();
+                tabla();
+            }
+           
         }
         public void combo()
         {
             SqlConnection conex = conexion.obtener();
-            SqlCommand comando = new SqlCommand("pa_ConsultarCN", conex);
+            SqlCommand comando = new SqlCommand("pa_ConsultarC", conex);
             comando.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter adapter = new SqlDataAdapter(comando);
             DataSet data = new DataSet();
             adapter.Fill(data);
             ddlCategoria.DataSource = data;
-           
             ddlCategoria.DataTextField = "NomCat";
-            if (ddlCategoria.SelectedValue=="NomC")
-            {
-          //      tabla();
-            }
-       
+            ddlCategoria.DataValueField = "CodCat";
             ddlCategoria.DataBind();
+
         }
-       public void tabla(string nombre,int codigo)
+        public void tabla()
         {
             SqlConnection conex = conexion.obtener();
-            SqlCommand comando = new SqlCommand("pa_ConsultarN", conex);
+            SqlCommand comando = new SqlCommand("pa_ConsultarP", conex);
             comando.CommandType = CommandType.StoredProcedure;
-             SqlParameter parametro = new SqlParameter();
-             SqlParameter parametro2 = new SqlParameter();
-            comando.Parameters.Add(parametro2).Value = nombre;
-            comando.Parameters.Add(parametro).Value = codigo;
             SqlDataAdapter adapter = new SqlDataAdapter(comando);
             DataSet data = new DataSet();
             adapter.Fill(data);
@@ -49,9 +45,25 @@ namespace Requerimiento
             gvProducto.DataBind();
         }
 
+
+
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("index.aspx");
+        }
+
+        protected void ddlCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int campo = Convert.ToInt32(ddlCategoria.SelectedValue);
+            SqlConnection conex = conexion.obtener();
+            SqlCommand command = new SqlCommand("pa_ConsultarN", conex);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add("@codigo", SqlDbType.Int).Value = campo;
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataSet set = new DataSet();
+            adapter.Fill(set);
+            gvProducto.DataSource = set;
+            gvProducto.DataBind();
         }
     }
 }

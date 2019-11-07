@@ -14,14 +14,14 @@ namespace Requerimiento
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ddlCategoria.Visible = false;
         }
 
         protected void btnMostrar_Click(object sender, EventArgs e)
         {
             combo();
             tabla();
-          
+            ddlCategoria.Visible = true;
           
         }
         public void combo()
@@ -34,14 +34,12 @@ namespace Requerimiento
             dynamic combo = ddlCategoria.DataSource;
            
             Session["Archivo"] = JsonConvert.SerializeObject(combo);
-            comboJson();
+         
 
         }
-        public void comboJson()
-        {
-            File.WriteAllText(Server.MapPath("Categoria.json"), "[" + Session["Archivo"].ToString() + "]");
-            Response.Write("<script>alert('Se creo archivo JSON de Categoria')</script>");
-        }
+      
+
+        
         public void tabla()
         {
             //  string archivo = File.ReadAllText(Server.MapPath("Producto.xml"));
@@ -52,19 +50,29 @@ namespace Requerimiento
             gvProducto.DataBind();
             dynamic tabla = gvProducto.DataSource;
             
-            Session["Archivo"] = JsonConvert.SerializeObject(tabla);
-            tablaJson();
+            Session["Archivo2"] = JsonConvert.SerializeObject(tabla);
+          
 
         }
-        public void tablaJson()
-        {
-            File.WriteAllText(Server.MapPath("Producto.json"), "[" + Session["Archivo"].ToString() + "]");
-            Response.Write("<script>alert('Creado archivo JSON de producto')</script>");
-        }
+       
+
+        
 
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
             Response.Redirect("index.aspx");
+        }
+
+        protected void btnCategoria_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(Server.MapPath("Categoria.json"), "[" + Session["Archivo"].ToString() + "]");
+            Response.Write("<script>alert('Se creo archivo JSON de Categoria')</script>");
+        }
+
+        protected void btnProducto_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(Server.MapPath("Producto.json"), "[" + Session["Archivo2"].ToString() + "]");
+            Response.Write("<script>alert('Creado archivo JSON de producto')</script>");
         }
     }
 }

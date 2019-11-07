@@ -12,21 +12,31 @@
 <body>
 
     <form id="form1" runat="server">
-     <div class="container">
-        <div class="row">
-            <div class="col text-center">
-          
-         <div>
+     <div class="container my-5">
+        <div class="row my-5">
+        <div class="col text-center my-5">
+          <h1>Cargar datos de la base de datos</h1>
+         <div class="mt-5">
             <asp:DropDownList ID="ddlCategoria" runat="server"></asp:DropDownList>
         </div>
-        <div>
-            <asp:GridView ID="gvProducto" runat="server"></asp:GridView>
+        <div class="mt-5">
+            <asp:GridView ID="gvProducto" runat="server" CssClass="m-auto" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                <AlternatingRowStyle BackColor="#CCCCCC" />
+                <FooterStyle BackColor="#CCCCCC" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#808080" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#383838" />
+            </asp:GridView>
         </div>
-        <div>
-        <asp:Button ID="btnMostrar" runat="server" Text="Mostrar" OnClick="btnMostrar_Click" CssClass="btn-outline-primary" />
+        <div class="mt-5">
+        <asp:Button ID="btnMostrar" runat="server" Text="Mostrar" OnClick="btnMostrar_Click" CssClass="btn btn-outline-primary" />
         </div>
-        <div>
-        <asp:Button ID="btnRegresar" runat="server" Text="Regresar" OnClick="btnRegresar_Click"  />
+        <div class="mt-5">
+        <asp:Button ID="btnRegresar" runat="server" Text="Regresar" OnClick="btnRegresar_Click" CssClass="btn btn-outline-dark"  />
         </div>
      
             </div>

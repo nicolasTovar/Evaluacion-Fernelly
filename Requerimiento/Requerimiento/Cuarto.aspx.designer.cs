@@ -10,7 +10,7 @@
 namespace Requerimiento {
     
     
-    public partial class Cuarto {
+    public partial class Cuartoo {
         
         /// <summary>
         /// Control form1.
